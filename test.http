@@ -1,0 +1,44 @@
+POST http://localhost:3000/posts
+Content-Type: application/json
+x-auth-token: 123456
+
+{
+"title": "test - title",
+"content": "test - content"
+}
+
+
+###
+GET http://localhost:3000/posts
+
+###
+GET http://localhost:3000/posts/2
+
+###
+POST http://localhost:3000/users
+Content-Type: application/json
+x-auth-token: 123456
+
+{
+"name": "test - name1",
+"password": "123456"
+}
+
+
+###
+GET http://localhost:3000/users
+
+###
+GET http://localhost:3000/users
+
+###
+GET http://localhost:3000/users/1
+
+###
+PUT http://localhost:3000/users/4/password
+Content-Type: application/json
+
+{
+"password": "1234567",
+"newPassword": "1234567"
+}
