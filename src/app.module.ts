@@ -9,6 +9,7 @@ import { TransformInterceptor } from "./core/interceptors/transform/transform.in
 import { ErrorsInterceptor } from "./core/interceptors/errors/errors.interceptor";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [PostsModule,
@@ -22,7 +23,8 @@ import { UserModule } from './modules/user/user.module';
       entities: [__dirname + "/**/*.entity{.ts,.js}"],
       synchronize: true
     }),
-    UserModule
+    UserModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService,
