@@ -8,7 +8,7 @@ export class ErrorsInterceptor implements NestInterceptor {
       .pipe(
         catchError(
           err => {
-            console.log("@@@@@@", err.root);
+            //console.log("@@@@@@", err.root);
             return of("I", "II", "III", "IV", "V");
           }
         )

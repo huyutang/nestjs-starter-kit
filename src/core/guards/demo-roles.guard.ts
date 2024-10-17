@@ -15,7 +15,7 @@ export class DemoRolesGuard implements CanActivate {
     const requiredRoles = this.reflector.get<string[]>("roles",
       context.getHandler());
 
-    console.log("required role guard info:", requiredRoles, context.getHandler());
+    //console.log("required role guard info:", requiredRoles, context.getHandler());
 
     // no need to check
     if(!requiredRoles) {

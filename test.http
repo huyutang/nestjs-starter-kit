@@ -1,16 +1,22 @@
 POST http://localhost:3000/posts
 Content-Type: application/json
 x-auth-token: 123456
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTA3NjI2NCwiZXhwIjoxNzMxNjY4MjY0fQ.H-1c41Eu3v8KSa1SGhF5-8eYE8uhjK1uCLHlGlluioI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
 
 {
 "title": "test - title",
-"content": "test - content"
+"content": "test - content",
+  "category": {
+    "id": 1
+  }
 }
 
 
 ###
-GET http://localhost:3000/posts
+GET http://localhost:3000/posts?page=1&limit=3
+
+###
+GET http://localhost:3000/posts?categories=c1,c2
 
 ###
 GET http://localhost:3000/posts/2
@@ -19,12 +25,12 @@ GET http://localhost:3000/posts/2
 POST http://localhost:3000/posts/1/vote
 Content-Type: application/json
 x-auth-token: 123456
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTA3NjI2NCwiZXhwIjoxNzMxNjY4MjY0fQ.H-1c41Eu3v8KSa1SGhF5-8eYE8uhjK1uCLHlGlluioI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
 
 ###
 DELETE http://localhost:3000/posts/3/vote
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTA3NjI2NCwiZXhwIjoxNzMxNjY4MjY0fQ.H-1c41Eu3v8KSa1SGhF5-8eYE8uhjK1uCLHlGlluioI
+Authorization: Bearer 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
 
 ###
 GET http://localhost:3000/posts/12/voted
@@ -36,13 +42,10 @@ Content-Type: application/json
 x-auth-token: 123456
 
 {
-"name": "test - name3",
+"name": "test - name4",
 "password": "123456"
 }
 
-
-###
-GET http://localhost:3000/users
 
 ###
 GET http://localhost:3000/users
@@ -75,4 +78,14 @@ Content-Type: application/json
 ###
 GET http://localhost:3000/auth/test
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTA3NjI2NCwiZXhwIjoxNzMxNjY4MjY0fQ.H-1c41Eu3v8KSa1SGhF5-8eYE8uhjK1uCLHlGlluioI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
+
+
+###
+POST http://localhost:3000/categories
+Content-Type: application/json
+
+{
+  "name": "category - name1",
+  "alias": "c1"
+}
