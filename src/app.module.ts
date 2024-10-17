@@ -10,6 +10,7 @@ import { ErrorsInterceptor } from "./core/interceptors/errors/errors.interceptor
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { CategoryModule } from './modules/category/category.module';
 
 @Module({
   imports: [PostsModule,
@@ -24,7 +25,8 @@ import { AuthModule } from './modules/auth/auth.module';
       synchronize: true
     }),
     UserModule,
-    AuthModule
+    AuthModule,
+    CategoryModule
   ],
   controllers: [AppController],
   providers: [AppService,

@@ -11,7 +11,7 @@ export class PostMiddleware implements NestMiddleware {
       ]
     };
 
-    console.log("@@@", req.headers["x-auth-token"] === "123456")
+    //console.log("@@@", req.headers["x-auth-token"] === "123456")
     if(req.headers["x-auth-token"] === "123456") {
       req.user = {
         roles: [

@@ -7,7 +7,7 @@ export class DemoAuthGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
-    console.log("auth guard info:", request.headers);
+    //console.log("auth guard info:", request.headers);
     return true;
   }
 }
