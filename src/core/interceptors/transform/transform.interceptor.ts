@@ -1,6 +1,6 @@
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nestjs/common";
-import { Observable } from "rxjs";
-import {map} from "rxjs/operators"
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
+import { Observable } from 'rxjs';
+import {map} from 'rxjs/operators'
 
 @Injectable()
 export class TransformInterceptor implements NestInterceptor {
@@ -11,7 +11,7 @@ export class TransformInterceptor implements NestInterceptor {
       .pipe(
         map(data => {
           const [ entities, count ] = data;
-          request.setHeader("X-Total-Count", count);
+          request.setHeader('X-Total-Count', count);
           return entities;
         })
       );

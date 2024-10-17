@@ -6,17 +6,18 @@ import {
   Entity, JoinTable, ManyToMany, OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
-} from "typeorm";
-import * as bcrypt from "bcrypt";
-import { Exclude } from "class-transformer";
-import { Post } from "../posts/post.entity";
+} from 'typeorm';
+import * as bcrypt from 'bcrypt';
+import { Exclude } from 'class-transformer';
+import { Post } from '../posts/post.entity';
+import { Role } from '../roles/role.entity';
 
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column("varchar", {unique: true })
+  @Column('varchar', {unique: true })
   name: string;
 
   @Column()
@@ -47,4 +48,8 @@ export class User {
   @ManyToMany(type => Post)
   @JoinTable()
   voted: Post[];
+
+  @ManyToMany(type => Role, role => role.users)
+  @JoinTable()
+  roles: Role[];
 }

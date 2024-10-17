@@ -1,5 +1,5 @@
 import { Injectable, NestMiddleware } from '@nestjs/common';
-import loader from "ts-loader";
+import loader from 'ts-loader';
 
 @Injectable()
 export class PostMiddleware implements NestMiddleware {
@@ -7,15 +7,15 @@ export class PostMiddleware implements NestMiddleware {
 
     req.user = {
       roles: [
-        "guest"
+        'guest'
       ]
     };
 
-    //console.log("@@@", req.headers["x-auth-token"] === "123456")
-    if(req.headers["x-auth-token"] === "123456") {
+    //console.log('@@@', req.headers['x-auth-token'] === '123456')
+    if(req.headers['x-auth-token'] === '123456') {
       req.user = {
         roles: [
-          "admin"
+          'admin'
         ]
       };
     }

@@ -1,5 +1,5 @@
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from "@nestjs/common";
-import { catchError, Observable, of } from "rxjs";
+import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
+import { catchError, Observable, of } from 'rxjs';
 
 @Injectable()
 export class ErrorsInterceptor implements NestInterceptor {
@@ -8,8 +8,8 @@ export class ErrorsInterceptor implements NestInterceptor {
       .pipe(
         catchError(
           err => {
-            //console.log("@@@@@@", err.root);
-            return of("I", "II", "III", "IV", "V");
+            //console.log('@@@@@@', err.root);
+            return of('I', 'II', 'III', 'IV', 'V');
           }
         )
       );
