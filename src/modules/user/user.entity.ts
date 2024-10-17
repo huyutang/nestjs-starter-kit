@@ -3,12 +3,13 @@ import {
   BeforeUpdate,
   Column,
   CreateDateColumn,
-  Entity,
+  Entity, JoinTable, ManyToMany, OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
 import * as bcrypt from "bcrypt";
 import { Exclude } from "class-transformer";
+import { Post } from "../posts/post.entity";
 
 @Entity()
 export class User {
@@ -38,4 +39,12 @@ export class User {
     console.log(this.password, password);
     return await bcrypt.compare(password, this.password);
   }
+
+  @OneToMany(type => Post,
+    post => post.user)
+  posts: Post[]
+
+  @ManyToMany(type => Post)
+  @JoinTable()
+  voted: Post[];
 }

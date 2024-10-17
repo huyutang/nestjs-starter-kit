@@ -1,4 +1,13 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+  ManyToOne,
+  ManyToMany, JoinTable
+} from "typeorm";
+import { User } from "../user/user.entity";
 
 @Entity()
 export class Post {
@@ -16,4 +25,12 @@ export class Post {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @ManyToOne(type => User,
+      user => user.posts)
+  user: User;
+
+  @ManyToMany(type => User)
+  @JoinTable()
+  voted: User[];
 }
