@@ -3,7 +3,7 @@ import { Post } from './post.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../user/user.entity';
-import { ListOptionsInterface } from "../../core/interfaces/list-options/list-options.interface";
+import { ListOptionsInterface } from '../../core/interfaces/list-options/list-options.interface';
 
 @Injectable()
 export class PostService {
@@ -12,7 +12,7 @@ export class PostService {
   }
 
   async findAll(options:ListOptionsInterface) {
-    console.log("@@@", options);
+    console.log('@@@', options);
     const {categories, page, limit } = options;
     const queryBuilder = this.postRepository.createQueryBuilder('post');
     queryBuilder.leftJoinAndSelect('post.user', 'user');
@@ -20,7 +20,7 @@ export class PostService {
     if (categories) {
       queryBuilder.where('category.alias in (:...categories)', { categories });
     }
-    queryBuilder.orderBy("post.id", "DESC");
+    queryBuilder.orderBy('post.id', 'DESC');
     queryBuilder.take(limit).skip((page - 1) * limit);
 
     return await queryBuilder.getManyAndCount();

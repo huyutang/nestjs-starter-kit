@@ -89,3 +89,24 @@ Content-Type: application/json
   "name": "category - name1",
   "alias": "c1"
 }
+
+###
+POST http://localhost:3000/roles
+Content-Type: application/json
+
+{
+  "name": "guest",
+  "alias": "r3"
+}
+
+###
+PUT http://localhost:3000/users/4
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
+
+{
+  "roles": [
+    {"id":  1},
+    {"id":  2}
+  ]
+}

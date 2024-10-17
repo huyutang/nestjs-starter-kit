@@ -1,4 +1,4 @@
-import { Category } from "../category/category.entity";
+import { Category } from '../category/category.entity';
 
 export class PostDto {
   readonly title: string;

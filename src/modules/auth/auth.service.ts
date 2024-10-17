@@ -1,8 +1,8 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { UserService } from "../user/user.service";
-import { LoginDto } from "./auth.dto";
-import { JwtPayload } from "./auth.interface";
-import { JwtService } from "@nestjs/jwt";
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { UserService } from '../user/user.service';
+import { LoginDto } from './auth.dto';
+import { JwtPayload } from './auth.interface';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
@@ -22,10 +22,10 @@ export class AuthService {
 
         return {...payload, token };
       } else {
-        throw new UnauthorizedException("用户名或密码错误");
+        throw new UnauthorizedException('用户名或密码错误');
       }
     } else {
-      throw new UnauthorizedException("用户名或密码错误");
+      throw new UnauthorizedException('用户名或密码错误');
     }
   }
 

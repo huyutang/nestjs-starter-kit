@@ -1,8 +1,8 @@
-import { Body, Controller, Post } from "@nestjs/common";
-import { CategoryDto } from "./category.dto";
-import { CategoryService } from "./category.service";
+import { Body, Controller, Post } from '@nestjs/common';
+import { CategoryDto } from './category.dto';
+import { CategoryService } from './category.service';
 
-@Controller("categories")
+@Controller('categories')
 export class CategoryController {
   constructor(
     private readonly categoryService: CategoryService

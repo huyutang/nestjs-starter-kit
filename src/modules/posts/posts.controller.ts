@@ -5,16 +5,16 @@ import {
   Headers,
   Param, ParseIntPipe,
   Post, Query, SetMetadata, UseGuards, UseInterceptors, UsePipes, ValidationPipe
-} from "@nestjs/common";
+} from '@nestjs/common';
 import { PostService } from './post.service';
 import { Roles } from '../../core/decorators/roles.decorator';
 import { ErrorsInterceptor } from '../../core/interceptors/errors/errors.interceptor';
 import { Post as PostEntity } from './post.entity';
 import { AuthGuard } from '@nestjs/passport';
 import { User } from '../../core/decorators/user.decorator';
-import { ListOptions } from "../../core/decorators/list-options.decorator";
-import { ListOptionsInterface } from "../../core/interfaces/list-options/list-options.interface";
-import { TransformInterceptor } from "../../core/interceptors/transform/transform.interceptor";
+import { ListOptions } from '../../core/decorators/list-options.decorator';
+import { ListOptionsInterface } from '../../core/interfaces/list-options/list-options.interface';
+import { TransformInterceptor } from '../../core/interceptors/transform/transform.interceptor';
 
 @Controller('posts')
 // @UseFilters(DemoFilter)
@@ -29,7 +29,7 @@ export class PostsController {
   @UseInterceptors(ErrorsInterceptor)
   @UseInterceptors(ClassSerializerInterceptor, TransformInterceptor)
   async listAll(@ListOptions({limit:5}) options: ListOptionsInterface) {
-    console.log("executed get", options);
+    console.log('executed get', options);
     return await this.postService.findAll(options);
   }
 

@@ -1,8 +1,8 @@
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { Category } from "./category.entity";
-import { Repository } from "typeorm";
-import { CategoryDto } from "./category.dto";
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Category } from './category.entity';
+import { Repository } from 'typeorm';
+import { CategoryDto } from './category.dto';
 
 @Injectable()
 export class CategoryService {
@@ -10,7 +10,6 @@ export class CategoryService {
     @InjectRepository(Category)
     private categoryRepository: Repository<Category>
   ) {
-    console.log("category service init");
   }
 
   async findAll() {
