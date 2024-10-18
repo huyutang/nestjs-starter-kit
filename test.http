@@ -110,3 +110,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6I
     {"id":  2}
   ]
 }
+
+
+###
+POST http://localhost:3000/files
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="test.txt"
+content-type: text/plain
+
+< /Users/tom/Desktop/temp/nestjs-starter-kit/test.txt
+--WebAppBoundary--
+
+
+###
+GET http://localhost:3000/files/2
