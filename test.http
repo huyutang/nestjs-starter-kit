@@ -126,3 +126,25 @@ content-type: text/plain
 
 ###
 GET http://localhost:3000/files/2
+
+###
+GET http://localhost:3000/cron/stop
+
+###
+POST http://localhost:3000/cron
+Content-Type: application/json
+
+{
+  "name": "test-job",
+  "schedule": "3 */10 * * * *"
+}
+
+###
+DELETE http://localhost:3000/cron/test-job
+
+
+###
+GET http://localhost:3000/cron
+
+###
+GET http://localhost:3000/cron/test-job
