@@ -5,7 +5,8 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   ManyToOne,
-  ManyToMany, JoinTable
+  ManyToMany,
+  JoinTable,
 } from 'typeorm';
 import { User } from '../user/user.entity';
 import { Category } from '../category/category.entity';
@@ -27,15 +28,13 @@ export class Post {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @ManyToOne(type => User,
-      user => user.posts)
+  @ManyToOne(() => User, (user) => user.posts)
   user: User;
 
-  @ManyToMany(type => User)
+  @ManyToMany(() => User)
   @JoinTable()
   voted: User[];
 
-  @ManyToOne(type => Category,
-    category => category.posts)
+  @ManyToOne(() => Category, (category) => category.posts)
   category: Category;
 }

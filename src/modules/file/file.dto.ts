@@ -1,4 +1,3 @@
-
 export interface FileDto {
   readonly fieldname: string;
   readonly originalname: string;

@@ -3,14 +3,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostsModule } from './modules/posts/posts.module';
 import { PostMiddleware } from './core/middlewares/post/post.middleware';
-import { RolesGuard } from './core/guards/roles.guard';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/user/user.module';
 import { CategoryModule } from './modules/category/category.module';
 import { RoleModule } from './modules/roles/role.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { FileModule } from './modules/file/file.module';
-import {ScheduleModule} from "@nestjs/schedule";
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
@@ -22,7 +21,7 @@ import {ScheduleModule} from "@nestjs/schedule";
       password: 'password',
       database: 'nestjs_db',
       entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true
+      synchronize: true,
     }),
     PostsModule,
     UserModule,
@@ -33,7 +32,8 @@ import {ScheduleModule} from "@nestjs/schedule";
     ScheduleModule.forRoot(),
   ],
   controllers: [AppController],
-  providers: [AppService,
+  providers: [
+    AppService,
     // {
     //   provide: 'APP_GUARD',
     //   useClass: RolesGuard
@@ -42,15 +42,11 @@ import {ScheduleModule} from "@nestjs/schedule";
     //   provide: 'APP_INTERCEPTOR',
     //   useClass: ErrorsInterceptor
     // }
-  ]
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     //
-    consumer
-      .apply(PostMiddleware)
-      .forRoutes('posts');
+    consumer.apply(PostMiddleware).forRoutes('posts');
   }
-
-
 }

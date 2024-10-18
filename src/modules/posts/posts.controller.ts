@@ -1,10 +1,16 @@
 import {
-  Body, ClassSerializerInterceptor,
-  Controller, Delete, ForbiddenException,
+  Body,
+  ClassSerializerInterceptor,
+  Controller,
+  Delete,
   Get,
-  Headers,
-  Param, ParseIntPipe,
-  Post, Query, SetMetadata, UseGuards, UseInterceptors, UsePipes, ValidationPipe
+  Param,
+  ParseIntPipe,
+  Post,
+  UseGuards,
+  UseInterceptors,
+  UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { PostService } from './post.service';
 import { Roles } from '../../core/decorators/roles.decorator';
@@ -19,20 +25,15 @@ import { TransformInterceptor } from '../../core/interceptors/transform/transfor
 @Controller('posts')
 // @UseFilters(DemoFilter)
 export class PostsController {
-
-
-  constructor(private readonly postService: PostService) {
-
-  }
+  constructor(private readonly postService: PostService) {}
 
   @Get()
   @UseInterceptors(ErrorsInterceptor)
   @UseInterceptors(ClassSerializerInterceptor, TransformInterceptor)
-  async listAll(@ListOptions({limit:5}) options: ListOptionsInterface) {
+  async listAll(@ListOptions({ limit: 5 }) options: ListOptionsInterface) {
     console.log('executed get', options);
     return await this.postService.findAll(options);
   }
-
 
   @Get(':id')
   @UseInterceptors(ClassSerializerInterceptor)
@@ -48,7 +49,7 @@ export class PostsController {
   @Roles('admin')
   async store(@Body() body: PostEntity, @User() user): Promise<PostEntity> {
     console.log('executed post', body);
-    return await this.postService.create({...body, user });
+    return await this.postService.create({ ...body, user });
   }
 
   @Post(':id/vote')
@@ -71,5 +72,4 @@ export class PostsController {
   async voted(@Param('id') id: number) {
     return await this.postService.voted(id);
   }
-
 }

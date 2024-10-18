@@ -3,9 +3,12 @@ import {
   BeforeUpdate,
   Column,
   CreateDateColumn,
-  Entity, JoinTable, ManyToMany, OneToMany,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
@@ -17,7 +20,7 @@ export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column('varchar', {unique: true })
+  @Column('varchar', { unique: true })
   name: string;
 
   @Column()
@@ -41,15 +44,14 @@ export class User {
     return await bcrypt.compare(password, this.password);
   }
 
-  @OneToMany(type => Post,
-    post => post.user)
-  posts: Post[]
+  @OneToMany(() => Post, (post) => post.user)
+  posts: Post[];
 
-  @ManyToMany(type => Post)
+  @ManyToMany(() => Post)
   @JoinTable()
   voted: Post[];
 
-  @ManyToMany(type => Role, role => role.users)
+  @ManyToMany(() => Role, (role) => role.users)
   @JoinTable()
   roles: Role[];
 }

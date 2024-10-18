@@ -8,19 +8,19 @@ import { JwtService } from '@nestjs/jwt';
 export class AuthService {
   constructor(
     private readonly userService: UserService,
-    private readonly jwtService: JwtService
+    private readonly jwtService: JwtService,
   ) {}
 
   async login(data: LoginDto) {
-    const {name, password} = data;
+    const { name, password } = data;
     const user = await this.userService.findOneByName(data.name);
     if (user) {
       if (!(await user.comparePassword(password))) {
-        const {id} = user;
-        const payload = { id,  name};
+        const { id } = user;
+        const payload = { id, name };
         const token = this.signToken(payload);
 
-        return {...payload, token };
+        return { ...payload, token };
       } else {
         throw new UnauthorizedException('用户名或密码错误');
       }
@@ -32,5 +32,4 @@ export class AuthService {
   signToken(data: JwtPayload) {
     return this.jwtService.sign(data);
   }
-
 }

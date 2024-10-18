@@ -7,13 +7,14 @@ import { ListOptionsInterface } from '../../core/interfaces/list-options/list-op
 
 @Injectable()
 export class PostService {
-  constructor(@InjectRepository(Post)
-              private postRepository: Repository<Post>) {
-  }
+  constructor(
+    @InjectRepository(Post)
+    private postRepository: Repository<Post>,
+  ) {}
 
-  async findAll(options:ListOptionsInterface) {
+  async findAll(options: ListOptionsInterface) {
     console.log('@@@', options);
-    const {categories, page, limit } = options;
+    const { categories, page, limit } = options;
     const queryBuilder = this.postRepository.createQueryBuilder('post');
     queryBuilder.leftJoinAndSelect('post.user', 'user');
     queryBuilder.leftJoinAndSelect('post.category', 'category');
@@ -26,13 +27,12 @@ export class PostService {
     return await queryBuilder.getManyAndCount();
 
     //return await this.postRepository.find({ relations: ['user', 'category'] });
-
   }
 
   async findOne(id: number): Promise<Post> {
     return await this.postRepository.findOne({
       where: { id },
-      relations: ['user', 'category']
+      relations: ['user', 'category'],
     });
   }
 
@@ -58,16 +58,13 @@ export class PostService {
 
   async voted(id: number) {
     console.log(id);
-    return await this.postRepository
-      .findOne(
-        {
-          where: { id },
-          relations: ['voted']
-        }
-      );
-      // .createQueryBuilder()
-      // .relation(Post, 'voted')
-      // .of(id)
-      // .loadMany();
+    return await this.postRepository.findOne({
+      where: { id },
+      relations: ['voted'],
+    });
+    // .createQueryBuilder()
+    // .relation(Post, 'voted')
+    // .of(id)
+    // .loadMany();
   }
 }

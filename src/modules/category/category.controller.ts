@@ -4,13 +4,10 @@ import { CategoryService } from './category.service';
 
 @Controller('categories')
 export class CategoryController {
-  constructor(
-    private readonly categoryService: CategoryService
-  ) {
-  }
+  constructor(private readonly categoryService: CategoryService) {}
 
   @Post()
-  async create(@Body() data: CategoryDto ) {
+  async create(@Body() data: CategoryDto) {
     return await this.categoryService.create(data);
   }
 }
