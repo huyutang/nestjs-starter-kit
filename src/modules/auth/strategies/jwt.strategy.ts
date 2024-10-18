@@ -37,15 +37,15 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
         name: payload.name
         // 添加其他需要的用户信息
       };
-      console.log('user info:', user);
+      //console.log('user info:', user);
 
       const dbuser = await this.userService.findOneByName(user.name);
       if(!dbuser) {
         console.log('dbuser does not exist:', dbuser);
         throw new UnauthorizedException('用户不存在');
       }
-
-      return this.success( user);
+      //console.log("JwtStrategy user result:", dbuser);
+      return this.success( dbuser);
     } catch (error) {
       return this.fail('Invalid token', 401);
     }

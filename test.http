@@ -100,7 +100,7 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/users/4
+PUT http://localhost:3000/users/5
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
 

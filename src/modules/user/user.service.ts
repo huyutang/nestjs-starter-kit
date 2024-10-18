@@ -1,9 +1,9 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
-import { User } from './user.entity';
-import { UpdatePasswordDto, UserDto } from './user.dto';
-import { Role } from '../roles/role.entity';
+import { BadRequestException, Injectable } from "@nestjs/common";
+import { InjectRepository } from "@nestjs/typeorm";
+import { In, Repository } from "typeorm";
+import { User } from "./user.entity";
+import { UpdatePasswordDto, UserDto } from "./user.dto";
+import { Role } from "../roles/role.entity";
 
 @Injectable()
 export class UserService {
@@ -18,7 +18,7 @@ export class UserService {
     const { name } = body;
     const user = await this.userRepository.findOneBy({ name });
     if (user) {
-      throw new BadRequestException('用户已存在');
+      throw new BadRequestException("用户已存在");
     }
 
     const userEntity = this.userRepository.create(body);
@@ -28,8 +28,21 @@ export class UserService {
   async findOne(id: number) {
     return this.userRepository.findOne({
       where: { id },
-      relations: ['posts']
+      relations: ["posts"]
     });
+  }
+
+  async findOneByName(name: string) {
+    const queryBuilder = this.userRepository.createQueryBuilder("user");
+    queryBuilder.where("user.name = :name", { name });
+    queryBuilder.leftJoinAndSelect("user.roles", "role");
+    const user = await queryBuilder.getOne();
+
+    if (!user) {
+      throw new BadRequestException("用户不存在");
+    }
+    return user;
+
   }
 
   async findAll() {
@@ -41,11 +54,11 @@ export class UserService {
     const { password, newPassword } = data;
     const user = await this.userRepository.findOneBy({ id });
     if (!user) {
-      throw new BadRequestException('用户不存在');
+      throw new BadRequestException("用户不存在");
     }
 
     if (!await user.comparePassword(password)) {
-      throw new BadRequestException('密码错误');
+      throw new BadRequestException("密码错误");
     }
 
     user.password = newPassword;
@@ -53,17 +66,12 @@ export class UserService {
   }
 
 
-  async findOneByName(name: string) {
-    return await this.userRepository.findOneBy({ name });
-
-  }
-
   async voted(id: number) {
     return await this.userRepository
       .findOne(
         {
           where: { id },
-          relations: ['voted', 'voted.user']
+          relations: ["voted", "voted.user"]
         }
       );
   }
@@ -72,7 +80,7 @@ export class UserService {
     const { roles } = data;
     const user = await this.userRepository.findOneBy({ id });
     if (!user) {
-      throw new BadRequestException('用户不存在');
+      throw new BadRequestException("用户不存在");
     }
 
     // Update roles relationship
