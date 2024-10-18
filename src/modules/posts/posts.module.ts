@@ -6,9 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from '../auth/auth.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Post]),
-    AuthModule
-  ],
+  imports: [TypeOrmModule.forFeature([Post]), AuthModule],
   controllers: [PostsController],
   providers: [PostService],
 })

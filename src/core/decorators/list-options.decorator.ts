@@ -23,4 +23,5 @@ export const ListOptions = createParamDecorator(
     }
 
     return { categories, page, limit };
-  });
+  },
+);

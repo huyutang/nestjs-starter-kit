@@ -6,9 +6,9 @@ import { RoleDto } from './role.dto';
 
 @Injectable()
 export class RoleService {
-
-  constructor(@InjectRepository(Role)
-              private roleRepository: Repository<Role>
+  constructor(
+    @InjectRepository(Role)
+    private roleRepository: Repository<Role>,
   ) {}
 
   async findAll(): Promise<Role[]> {
@@ -33,11 +33,7 @@ export class RoleService {
     return await this.roleRepository.remove(role);
   }
 
-
   async findOneByName(name: string): Promise<Role> {
     return await this.roleRepository.findOneBy({ name });
   }
-
-
-
 }

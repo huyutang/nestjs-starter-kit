@@ -1,35 +1,47 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { AppService } from './app.service';
-import { SchedulerRegistry } from "@nestjs/schedule";
+import { SchedulerRegistry } from '@nestjs/schedule';
 import { CronJob } from 'cron';
 
 @Controller()
 export class AppController {
   constructor(
     private readonly appService: AppService,
-    private readonly schedulerRegistry: SchedulerRegistry
+    private readonly schedulerRegistry: SchedulerRegistry,
   ) {}
 
   @Put('/cron/:action')
   manageJob(@Param('action') action: string) {
-    const greetingJob = this.schedulerRegistry.getCronJob("greeting");
-    if (action === "start") {
+    const greetingJob = this.schedulerRegistry.getCronJob('greeting');
+    if (action === 'start') {
       greetingJob.start();
-    } else if (action === "stop") {
+    } else if (action === 'stop') {
       greetingJob.stop();
-    }else if (action === "info") {
-      console.log('last executed time:' , greetingJob.lastDate());
+    } else if (action === 'info') {
+      console.log('last executed time:', greetingJob.lastDate());
     }
     return;
   }
 
   @Post('/cron')
   addJob(@Body() data) {
-    const {name, schedule} = data;
-    console.log("data:", data, schedule);
-    const job = new CronJob(schedule, () => {
-      console.log("customer hello world");
-    }, name);
+    const { name, schedule } = data;
+    console.log('data:', data, schedule);
+    const job = new CronJob(
+      schedule,
+      () => {
+        console.log('customer hello world');
+      },
+      name,
+    );
 
     this.schedulerRegistry.addCronJob(name, job);
     job.start();
@@ -40,9 +52,10 @@ export class AppController {
   @Get('/cron/:name')
   checkJob(@Param('name') name: string) {
     const greetingJob = this.schedulerRegistry.getCronJob(name);
-    console.log('last executed time:' , greetingJob.lastDate());
-    return {"nextDate": greetingJob.nextDate(),
-      "lastDate": greetingJob.lastDate()
+    console.log('last executed time:', greetingJob.lastDate());
+    return {
+      nextDate: greetingJob.nextDate(),
+      lastDate: greetingJob.lastDate(),
     };
   }
 
@@ -56,7 +69,7 @@ export class AppController {
         name: name,
         nextDate: job.nextDate(),
         lastDate: job.lastDate(),
-        schedule: job.cronTime.toString()
+        schedule: job.cronTime.toString(),
       });
     });
 
@@ -64,15 +77,15 @@ export class AppController {
   }
 
   @Delete('/cron/:name')
-  deleteJob(@Param("name") name: string) {
+  deleteJob(@Param('name') name: string) {
     const greetingJob = this.schedulerRegistry.getCronJob(name);
-    if(greetingJob && greetingJob.running) {
+    if (greetingJob && greetingJob.running) {
       greetingJob.stop();
     }
 
-    console.log("delete job name:", name);
+    console.log('delete job name:', name);
     this.schedulerRegistry.deleteCronJob(name);
-    console.log("delete job success");
-    return "delete job success";
+    console.log('delete job success');
+    return 'delete job success';
   }
 }
