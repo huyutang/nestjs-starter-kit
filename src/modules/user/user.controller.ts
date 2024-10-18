@@ -13,6 +13,8 @@ import {
 import { UserService } from './user.service';
 import { UpdatePasswordDto, UserDto } from './user.dto';
 import { AuthGuard } from '@nestjs/passport';
+import { RolesGuard } from "../../core/guards/roles.guard";
+import { Roles } from "../../core/decorators/roles.decorator";
 
 @Controller('users')
 export class UserController {
@@ -54,8 +56,9 @@ export class UserController {
 
   // update role
   @Put(':id')
+  @Roles('user')
   // 'jwt' is required to avoid TypeError: metatype is not a constructor
-  @UseGuards(AuthGuard('jwt'))
+  @UseGuards(AuthGuard('jwt'), RolesGuard)
   @UseInterceptors(ClassSerializerInterceptor)
   async update(@Param('id', ParseIntPipe) id: number, @Body() data: UserDto) {
     return await this.userService.update(id, data);

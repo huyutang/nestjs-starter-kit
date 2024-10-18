@@ -3,8 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { PostsModule } from './modules/posts/posts.module';
 import { PostMiddleware } from './core/middlewares/post/post.middleware';
-import { DemoAuthGuard } from './core/guards/demo-auth.guard';
-import { DemoRolesGuard } from './core/guards/demo-roles.guard';
+import { RolesGuard } from './core/guards/roles.guard';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserModule } from './modules/user/user.module';
 import { CategoryModule } from './modules/category/category.module';
@@ -31,14 +30,10 @@ import { AuthModule } from './modules/auth/auth.module';
   ],
   controllers: [AppController],
   providers: [AppService,
-    {
-      provide: 'APP_GUARD',
-      useClass: DemoAuthGuard
-    },
-    {
-      provide: 'APP_GUARD',
-      useClass: DemoRolesGuard
-    }
+    // {
+    //   provide: 'APP_GUARD',
+    //   useClass: RolesGuard
+    // }
     // {
     //   provide: 'APP_INTERCEPTOR',
     //   useClass: ErrorsInterceptor

@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Reflector } from '@nestjs/core';
 
 @Injectable()
-export class DemoRolesGuard implements CanActivate {
+export class RolesGuard implements CanActivate {
   constructor(private readonly reflector: Reflector) {
   }
 
@@ -11,11 +11,10 @@ export class DemoRolesGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const request = context.switchToHttp().getRequest();
+    //console.log("RolesGuard user:", request.user);
 
     const requiredRoles = this.reflector.get<string[]>('roles',
       context.getHandler());
-
-    //console.log('required role guard info:', requiredRoles, context.getHandler());
 
     // no need to check
     if(!requiredRoles) {
@@ -23,9 +22,10 @@ export class DemoRolesGuard implements CanActivate {
     }
 
     const {user} = request;
-    const hasRole = () => user.roles.some((role) => requiredRoles.includes(role));
 
-    console.log('user role info:', user.roles, hasRole());
+    const hasRole = () => user.roles.some((role) => requiredRoles.includes(role.name) );
+
+    console.log("RolesGuard hasRole:", user && user.roles, hasRole());
     return user && user.roles && hasRole();
   }
 }
