@@ -10,6 +10,7 @@ import { RoleModule } from './modules/roles/role.module';
 import { AuthModule } from './modules/auth/auth.module';
 import { FileModule } from './modules/file/file.module';
 import { ScheduleModule } from '@nestjs/schedule';
+import { QueueModule } from './modules/queue/queue.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { ScheduleModule } from '@nestjs/schedule';
     AuthModule,
     FileModule,
     ScheduleModule.forRoot(),
+    QueueModule,
   ],
   controllers: [AppController],
   providers: [

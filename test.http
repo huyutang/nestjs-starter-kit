@@ -148,3 +148,12 @@ GET http://localhost:3000/cron
 
 ###
 GET http://localhost:3000/cron/test-job
+
+
+###
+POST http://localhost:3000/queue/add-job
+Content-Type: application/json
+
+{
+  "task": "test-task"
+}
