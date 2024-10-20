@@ -10,12 +10,12 @@ export class QueueService {
   ) {}
 
   async addJob(data: any) {
-    console.log("addJob:", data);
+    console.log('addJob:', data);
     try {
       await this.queue.add('exampleJob', data);
     } catch (error) {
       console.error('Error adding job to queue:', error);
     }
-    console.log("Job added to queue");
+    console.log('Job added to queue');
   }
 }
