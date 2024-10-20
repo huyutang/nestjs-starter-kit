@@ -8,17 +8,17 @@
 - configure in env -  nestjs/config
 - auth - nestjs/jwt, nestjs/passport
 - ORM solution - nestjs/typeorm (mysql)
-- Job - nestjs/schedule
-- Queue - nestjs/bull (redis)
+- job - nestjs/schedule
+- queue - nestjs/bull (redis)
 - middleware
 - file upload/download
 - docker/docker-compose
 
 ## Tech stack:
 
-- TypeOrm
+- typeOrm
 - typescript
-- nextjs
+- nestjs
 - nodejs
 - caddy
 
