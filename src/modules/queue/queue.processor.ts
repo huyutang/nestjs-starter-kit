@@ -19,7 +19,7 @@ export class QueueProcessor {
     await new Promise((resolve) => setTimeout(resolve, 5000));
 
     done(null, 'Job completed successfully');
-    console.log("end Processing job:", job.data);
+    console.log('end Processing job:', job.data);
   }
 
   @OnQueueActive()

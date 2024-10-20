@@ -1,7 +1,7 @@
-POST http://localhost:3000/posts
+POST http://localhost:8080/posts
 Content-Type: application/json
 x-auth-token: 123456
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InVzZXIxIiwiaWF0IjoxNzI5Mzk4MzIxLCJleHAiOjE3MzE5OTAzMjF9.yUwzn1s5g0w8I3eM3q9n9_cWcq1OqOQCZfQ-M0dehrg
 
 {
 "title": "test - title",
@@ -11,87 +11,87 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6I
   }
 }
 
-
 ###
-GET http://localhost:3000/posts?page=1&limit=3
-
 ###
-GET http://localhost:3000/posts?categories=c1,c2
-
+GET http://localhost:8080/posts?page=1&limit=3
 ###
-GET http://localhost:3000/posts/2
-
 ###
-POST http://localhost:3000/posts/1/vote
+GET http://localhost:8080/posts?categories=c1,c2
+###
+###
+GET http://localhost:8080/posts/1
+###
+###
+POST http://localhost:8080/posts/1/vote
 Content-Type: application/json
 x-auth-token: 123456
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InVzZXIxIiwiaWF0IjoxNzI5Mzk4MzIxLCJleHAiOjE3MzE5OTAzMjF9.yUwzn1s5g0w8I3eM3q9n9_cWcq1OqOQCZfQ-M0dehrg
 ###
-DELETE http://localhost:3000/posts/3/vote
+###
+DELETE http://localhost:8080/posts/1/vote
 Content-Type: application/json
-Authorization: Bearer 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InVzZXIxIiwiaWF0IjoxNzI5Mzk4MzIxLCJleHAiOjE3MzE5OTAzMjF9.yUwzn1s5g0w8I3eM3q9n9_cWcq1OqOQCZfQ-M0dehrg
+###
+###
+GET http://localhost:8080/posts/1/voted
+
 
 ###
-GET http://localhost:3000/posts/12/voted
-
-#-----------------------------------------
-###
-POST http://localhost:3000/users
+POST http://localhost:8080/users
 Content-Type: application/json
 x-auth-token: 123456
 
 {
-"name": "test - name4",
+"name": "user6",
 "password": "123456"
 }
 
-
 ###
-GET http://localhost:3000/users
-
 ###
-GET http://localhost:3000/users/6
-
+GET http://localhost:8080/users
 ###
-GET http://localhost:3000/users/6/voted
-
 ###
-PUT http://localhost:3000/users/4/password
+GET http://localhost:8080/users/1
+###
+###
+GET http://localhost:8080/users/6/voted
+###
+###
+PUT http://localhost:8080/users/1/password
 Content-Type: application/json
 
 {
-"password": "1234567",
-"newPassword": "1234567"
+"password": "123456",
+"newPassword": "123456"
 }
 
-#-----------------------------------------
+
 ###
-POST http://localhost:3000/auth/login
+POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
-  "name": "test - name3",
+  "name": "user1",
   "password": "1234567"
 }
 
 ###
-GET http://localhost:3000/auth/test
+GET http://localhost:8080/auth/test
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InVzZXIxIiwiaWF0IjoxNzI5Mzk4MzIxLCJleHAiOjE3MzE5OTAzMjF9.yUwzn1s5g0w8I3eM3q9n9_cWcq1OqOQCZfQ-M0dehrg
 
 
 ###
-POST http://localhost:3000/categories
+POST http://localhost:8080/categories
 Content-Type: application/json
 
 {
-  "name": "category - name1",
-  "alias": "c1"
+  "name": "category - name2",
+  "alias": "c2"
 }
 
 ###
-POST http://localhost:3000/roles
+POST http://localhost:8080/roles
 Content-Type: application/json
 
 {
@@ -100,9 +100,9 @@ Content-Type: application/json
 }
 
 ###
-PUT http://localhost:3000/users/5
+PUT http://localhost:8080/users/1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6InRlc3QgLSBuYW1lMyIsImlhdCI6MTcyOTEyNjEzOSwiZXhwIjoxNzMxNzE4MTM5fQ.rc13qXAjLhdHvFW4Vnm4hO02FL9MUoZdE9IiVGoCR64
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6InVzZXIxIiwiaWF0IjoxNzI5Mzk4MzIxLCJleHAiOjE3MzE5OTAzMjF9.yUwzn1s5g0w8I3eM3q9n9_cWcq1OqOQCZfQ-M0dehrg
 
 {
   "roles": [
@@ -113,7 +113,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwibmFtZSI6I
 
 
 ###
-POST http://localhost:3000/files
+POST http://localhost:8080/files
 Content-Type: multipart/form-data; boundary=WebAppBoundary
 
 --WebAppBoundary
@@ -125,13 +125,13 @@ content-type: text/plain
 
 
 ###
-GET http://localhost:3000/files/2
+GET http://localhost:8080/files/1
 
 ###
-GET http://localhost:3000/cron/stop
+GET http://localhost:8080/cron/stop
 
 ###
-POST http://localhost:3000/cron
+POST http://localhost:8080/cron
 Content-Type: application/json
 
 {
@@ -140,20 +140,29 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/cron/test-job
+DELETE http://localhost:8080/cron/test-job
 
 
 ###
-GET http://localhost:3000/cron
+GET http://localhost:8080/cron
 
 ###
-GET http://localhost:3000/cron/test-job
+GET http://localhost:8080/cron/test-job
 
 
 ###
-POST http://localhost:3000/queue/add-job
+POST http://localhost:8080/queue/add-job
 Content-Type: application/json
 
 {
   "task": "test-task"
+}
+
+###
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "name": "user1",
+  "password": "1234567"
 }
